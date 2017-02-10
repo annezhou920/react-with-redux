@@ -1,4 +1,5 @@
 import {SET_LYRICS} from '../constants';
+import axios from 'axios';
 
 export const setLyrics = function(text){
   return {
@@ -22,14 +23,14 @@ const fetchAlbumsFromServer =() => {
     axios.get('/api/albums')
       .then(res => res.data)
       // use the dispatch method the thunkMiddleware gave us
-      .then(albums => dispatch(receiveAlbumsFromServer(albums))); 
+      .then(albums => dispatch(receiveAlbumsFromServer(albums)));
   }
 }
 
 const playSong = songId => {
   return dispatch => {
     // side effects, like using the audio element belong in async action creators too, even if they aren't "async"
-    audio.play() 
+    audio.play()
     dispatch(selectSong(songId));
   }
 }
